@@ -20,3 +20,7 @@ jobs:
           cache: yarn
       - name: Install dependencies
         run: yarn install
+      - name: Install dependencies
+        run: yarn install
+      - name: Build
+        run: yarn build doclink

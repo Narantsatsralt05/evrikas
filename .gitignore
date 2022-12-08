@@ -102,3 +102,6 @@ buck-out/
 
 
 apps/business-e2e/artifacts
+
+# Next.js
+.next
