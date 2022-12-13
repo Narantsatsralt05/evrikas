@@ -6,7 +6,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Welcome to Admin!</title>
+        <title>Welcome to Pinecone CI Admin !</title>
       </Head>
       <main className="app">
         <Component {...pageProps} />

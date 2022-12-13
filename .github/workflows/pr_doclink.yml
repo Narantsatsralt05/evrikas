@@ -4,12 +4,12 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 on:
   push:
-    paths-ignore:
-      - 'docs/**'
     branches-ignore:
       - main
     paths:
       - 'apps/doclink/**'
+      - '!docs/**'
+
 jobs:
   Deploy-Preview:
     runs-on: ubuntu-latest
