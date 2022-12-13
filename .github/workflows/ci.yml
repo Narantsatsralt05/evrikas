@@ -1,30 +1,25 @@
-# name: CI
-# env:
-#   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-#   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-
-# on:
-#   push:
-#     branches:
-#       - main
-#   pull_request:
-
-# jobs:
-#   build:
-#     name: Build
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - uses: actions/checkout@v2
-
-#       - uses: actions/setup-node@v2
-#         with:
-#           node-version: ${{env.node-version}}
-#           cache: yarn
-
-#       - name: Install Vercel CLI
-#         run: npm install --global vercel@latest
-#       - name: Install dependencies
-#         run: yarn install
-#       - name: Build
-#         run: npx nx build doclink
+name: Vercel Preview Deployment
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_ADMIN_PROJECT_ID }}
+on:
+  push:
+    branches-ignore:
+      - main
+jobs:
+  Deploy-Preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: npm install --legacy-peer-deps
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      - name: Install Nx CLI
+        run: npm install --global @nrwl/cli nx
+      # - name: Pull Vercel Environment Information
+      #   run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: npx nx build admin
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel --token=${{ secrets.VERCEL_TOKEN }}
