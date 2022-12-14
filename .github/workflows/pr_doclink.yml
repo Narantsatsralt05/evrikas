@@ -8,6 +8,7 @@ on:
       - main
     paths:
       - 'apps/doclink/**'
+      - 'libs/doclink/**'
       - '!docs/**'
 
 jobs:
@@ -15,8 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
       - name: Install Dependencies
         run: npm install --legacy-peer-deps
       - name: Install Vercel CLI
