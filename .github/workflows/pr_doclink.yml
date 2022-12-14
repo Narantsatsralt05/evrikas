@@ -8,6 +8,7 @@ on:
       - main
     paths:
       - 'apps/doclink/**'
+      - 'libs/doclink/**'
       - '!docs/**'
 
 jobs:
@@ -21,9 +22,9 @@ jobs:
         run: npm install --global vercel@latest
       - name: Install Nx CLI
         run: npm install --global @nrwl/cli nx
-      # - name: Pull Vercel Environment Information
-      #   run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build Project Artifacts
-        run: npx nx build doclink
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
-        run: vercel --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
