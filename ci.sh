@@ -1,1 +1,0 @@
-printf 'y\ny\nn\ny\nadmin\n' | vercel
