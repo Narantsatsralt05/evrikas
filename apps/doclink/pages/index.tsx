@@ -27,8 +27,6 @@ export const Element = ({ element }) => {
   return (
     <div
       style={{
-        borderBottom: '1px solid gray',
-        borderTop: '1px solid gray',
         width: 'auto',
       }}
     >
@@ -37,6 +35,7 @@ export const Element = ({ element }) => {
           display: 'flex',
           justifyContent: 'start',
           gap: '6px',
+          color: 'black',
         }}
         onClick={handlerClick}
       >
@@ -50,7 +49,8 @@ export const Element = ({ element }) => {
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '12px',
-                  padding: '6px',
+                  padding: '12px',
+                  borderLeft: '1px solid #e5e7eb',
                 }
               : {}
           }
