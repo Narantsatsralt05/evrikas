@@ -28,3 +28,13 @@ jobs:
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
         run: vercel --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        id: preview-deployment
+        run: echo "GITHUB_PREVIEW_URL=$(vercel --prebuilt --token=${{ secrets.VERCEL_TOKEN }})" >> $GITHUB_ENV
+      - name: Preview Link
+        run: echo $GITHUB_PREVIEW_URL
+      - name: Add the preview report to pull request
+        uses: mshick/add-pr-comment@v2
+        with:
+          message: ${{ env.GITHUB_PREVIEW_URL }}
+          proxy-url: ${{ steps.preview-deployment.outputs.result }}
